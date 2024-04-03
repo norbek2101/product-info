@@ -1,13 +1,29 @@
-from sqlalchemy import  Column,  Integer, String
+from sqlalchemy import Column, Integer, Float, DECIMAL,  ForeignKey
+from sqlalchemy.orm import declarative_base, relationship
 
-from src.storage.dbconfig import Base
+Base = declarative_base()
 
 
-class Material(Base):
-    __tablename__ = "material"
+class ProductMaterial(Base):
+    __tablename__ = 'product_materials'
+    id = Column(Integer, primary_key=True, index=True)
+    product_id = Column(Integer, ForeignKey('products.id'))
+    material_id = Column(Integer, ForeignKey('materials.id'))
+    quantity = Column(Float)
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String, index=True)
+    product = relationship("Product")
+    material = relationship("Material")
+
+
+
+class Warehouse(Base):
+    __tablename__ = 'warehouses'
+    id = Column(Integer, primary_key=True, index=True)
+    material_id = Column(Integer, ForeignKey('materials.id'))
+    reminder = Column(Float)
+    price = Column(DECIMAL)
+
+    product = relationship("Product")
    
 
 

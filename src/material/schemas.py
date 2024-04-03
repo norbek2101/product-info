@@ -15,7 +15,7 @@ class MaterialRead(MaterialBase):
 
     class Config:
         orm_mode = True
-
+ 
 
 class MaterialUpdate(BaseModel):
     name: Optional[str] = None
