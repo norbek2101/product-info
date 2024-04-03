@@ -1,15 +1,9 @@
-from sqlalchemy import  Column,  Integer, String
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import declarative_base
 
-from src.storage.dbconfig import Base
-
+Base = declarative_base()
 
 class Product(Base):
-    __tablename__ = "product"
-
-    id = Column(Integer, primary_key=True)
+    __tablename__ = 'products'
+    id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
-    code = Column(String, index=True)
-   
-
-
-
